@@ -1,0 +1,26 @@
+body {
+    margin-top: 7rem;
+    background: #eff0eb;
+    background-image: url('https://i.postimg.cc/MTbfnkj6/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#text{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+#author{
+    font-style: italic;
+    font-size: 1.1em;
+}
+.card-header{
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+    margin-left: -13px;
+    margin-right: -13px;
+}
+.card {
+    background-color: rgb(197, 247, 220);
+}
