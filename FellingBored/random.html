@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Aditya</title>
+    <style>
+        body {
+            background: #1D1F20;
+        }
+
+        #ct {
+            height: auto;
+            width: 50%;
+            border: 1px solid #f1c40f;
+            margin: 100px auto;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            padding: 10px;
+        }
+
+        span {
+            background: #1D1F20;
+            color: #f1c40f;
+            padding: 0 10px;
+            font-size: 20px;
+            position: relative;
+            top: -28px;
+        }
+
+        .corner {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            transform: rotate(-45deg);
+            position: absolute;
+            background: #1D1F20;
+        }
+
+        #left_top {
+            top: -16px;
+            left: -16px;
+            border-color: transparent transparent #f1c40f transparent;
+        }
+
+        #right_top {
+            top: -16px;
+            right: -16px;
+            border-color: transparent transparent transparent #f1c40f;
+        }
+
+        #left_bottom {
+            bottom: -16px;
+            left: -16px;
+            border-color: transparent #f1c40f transparent transparent;
+        }
+
+        #right_bottom {
+            bottom: -16px;
+            right: -16px;
+            border-color: #f1c40f transparent transparent transparent;
+        }
+
+        p {
+            padding-top: 13px;
+            font-size: 18px
+        }
+
+        .center{
+            text-align: center;
+            margin: 0 auto;
+            margin-top: -70px;
+        }
+
+        .btn{
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="center" style="font-size: 2em; text-transform: capitalize; text-decoration: underline; color: yellow; margin-top: 60px;">
+        felling bored ??
+    </div>
+    <div class="center" style="font-size: 1.2em; margin-top: 15px; color: yellow;">
+        Do some random activities
+    </div>
+    <div id="ct">
+        <div class="corner " id="left_top"></div>
+        <div class="corner" id="left_bottom"></div>
+        <div class="corner" id="right_top"></div>
+        <div class="corner" id="right_bottom"></div>
+        <span style="font-size: 1.5em; font-weight: 600; color: rgb(180, 189, 96);">RANDOM ACTIVITY</span>
+        <blockquote>
+            <p class="pt-4"><i>
+                <span id="data">&ldquo;Catch up with a friend over a lunch date&ldquo;</span>
+            </i></p>
+        </blockquote>
+    </div>
+    <div class="center">
+        <button class="btn btn-warning px-5" id="clicked">Next</button>
+    </div>
+
+    <script>
+        const text = document.getElementById("data");
+        const clicked = document.getElementById("clicked");
+        const url = "https://www.boredapi.com/api/activity";
+        const getdata = async () => {
+            text.innerHTML = "loading ......";
+            const data = await fetch(url);
+            const ndata = await data.json();
+            console.log(ndata);
+            text.innerHTML = `&ldquo;${ndata.activity}&ldquo;`;
+        }
+        clicked.addEventListener("click", getdata);
+        // getdata();
+    </script>
+</body>
+
+</html>
