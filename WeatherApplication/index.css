@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+html,
+body {
+    height: 100vh;
+}
+
+* {
+    padding: 0px;
+    margin: 0px
+}
+
+body {
+    background-color: #e1ecff;
+    display: grid;
+    grid-template-areas: "a""b""b""b";
+    background: url("./bg.jpg");
+    background-size: cover;
+}
+
+.card1{
+    -webkit-box-shadow: 5px 7px 59px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: 5px 7px 59px -7px rgba(0,0,0,0.75);
+box-shadow: 5px 7px 59px -7px rgba(0,0,0,0.75);
+    position: relative;
+    left: 1%;
+    border-radius: 25px;
+    width: 98%;
+    background-color: #384174e5;
+}
+
+input{
+    background-color: rgb(234, 227, 250);
+    border-radius: 15px;
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
+::placeholder{
+    color: rgb(179, 129, 137);
+}
+
+#clicked{
+    background-color: #58d8ff;
+    border-color: #63cae9;
+    border-width: 2px;
+    color: rgb(65, 36, 36);
+    border-radius: 10px;
+}
+#clicked:hover{
+    background-color: #21bdec;
+}
+
+.card2 {
+    -webkit-box-shadow: 16px 18px 67px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 16px 18px 67px -8px rgba(0,0,0,0.75);
+    box-shadow: 16px 18px 67px -8px rgba(0,0,0,0.75);
+    position: relative;
+    background-color: #58d8ff;
+    border-radius: 45px;
+    color: #6f707d;
+    font-family: 'Marcellus', serif
+}
+
+#place{
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
+#heading {
+    color: #2b304d;
+}
+
+.temp {
+    place-items: center;
+    font-weight: 700;
+}
+
+.detail{
+    color: #2b304d;
+}
+
+#date{
+    line-height: 1.3em;
+}
+
+#temp1{
+    font-size: 60px;
+    font-weight: 700;
+}
+
+#con{
+    font-style: italic;
+}
+
+.inc{
+    font-weight: 600;
+}
+
+.img{
+    position: absolute;
+    font-size: 6em;
+    right: 15px;
+    bottom: 10px;
+    margin-bottom: -5px;
+    color: rgb(78, 58, 58);
+}
+
+.temp-details>p,
+.grey {
+    color: brown;
+    font-size: 17px;
+}
+
+.fa {
+    color: #a5a5b1
+}
+
+*:focus {
+    outline: none
+}

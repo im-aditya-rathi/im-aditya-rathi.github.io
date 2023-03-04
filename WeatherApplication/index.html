@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Live Weather °C</title>
+</head>
+<body>
+
+    <div class="container-fluid mt-5">
+        <div  class="row justify-content-center">
+            <div class="col-lg-5 col-12 col-xs-12">
+                <div class="card card1 p-3 px-2">
+                    <div class="d-flex g-2">
+                        <input type="text" placeholder="Enter city name" class="ps-2 flex-grow-1" name="" id="city">
+                        <button id="clicked" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-12 col-xs-12">
+                <div class="card card2 p-4">
+                    <div class="d-flex">
+                        <h6 class="detail flex-grow-1">
+                            <span id="place">DELHI</span>
+                            /
+                            <span id="coun">IN</span>
+                        </h6>
+                        <div>
+                            <h6 id="date">
+                                WED, JAN 12 <br>
+                                &nbsp; 6:50 AM
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column temp mt-3 mb-5">
+                        <h1 class="mb-0 font-weight-bold" id="heading">
+                            <span id="temp1"> 13 </span>
+                            °C
+                        </h1> 
+                        <span class="small grey inc" id="con">Stormy</span>
+                    </div>
+                    <div class="d-flex">
+                        <div class="temp-details flex-grow-1">
+                            <p class="my-1">
+                                <i class="far fa-wind">&nbsp;</i>
+                                wind :
+                                <span id="wind" class="inc"> 2.3 </span> 
+                                Km/h
+                            </p>
+                            <p class="my-1"> 
+                                <i class="fal fa-temperature-high ps-1">&nbsp;</i>
+                                real feel :
+                                <span id="temp2" class="inc">10</span>
+                                °C
+                            </p>
+                            <p class="my-1"> 
+                                <i class="far fa-compress-arrows-alt">&nbsp;</i>
+                                pressure :
+                                <span id="press" class="inc">5</span>
+                                atm
+                            </p>
+                        </div>
+                        <div id="img" class="img">
+                            <i class="fal fa-sun"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>       
+        const splace = document.getElementById("place");
+        const scoun = document.getElementById("coun");
+        const stemp1 = document.getElementById("temp1");
+        const stemp2 = document.getElementById("temp2");
+        const spress = document.getElementById("press");
+        const swind = document.getElementById("wind");
+        const scon = document.getElementById("con");
+        const sdate = document.getElementById("date");
+        const simg = document.getElementById("img");
+        const search = document.getElementById("city");
+        const clicked = document.getElementById("clicked");
+        
+        window.onload = () =>{
+            search.value="";
+        }
+
+        const putdata = ()=>{
+            let place = ndata.name;
+            let coun = ndata.sys.country;
+            let temp1 = ndata.main.temp;
+            let temp2 = ndata.main.feels_like;
+            let press = ndata.main.pressure;
+            let wind = ndata.wind.speed;
+            var con = ndata.weather[0].main;
+            let time = ndata.dt;
+
+            // date and time 
+            let days = ["sun","mon","tue","wed","thu","fri","sat"];
+            let months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+            let data = new Date();
+            day = (days[data.getDay()].toUpperCase());
+            date = (data.getDate());
+            month = (months[data.getMonth()].toUpperCase());
+            year = (data.getFullYear());
+            hour = data.getHours()
+            if(data.getHours() < 1)
+            {
+                hour = data.getHours()+12;
+            }
+            else if(data.getHours()>12)
+            {
+                hour = data.getHours()-12;
+            }
+            minute = data.getMinutes();
+            if(data.getMinutes()<10)
+            {
+                var minute = "0"+data.getMinutes();
+            }
+            period = "AM";
+            if(data.getHours>11)
+            {
+                period = "AM";
+            }
+            fullDate =`${day}, ${month} ${date} <br> &nbsp;&nbsp;${hour}:${minute} ${period}`;
+
+            // pattern
+            if(con === "Sunny")
+                pattern = '<i class="fas fa-sun"></i>';
+            else if(con === "Clear"){
+                if(data.getHours()<6 || data.getHours()>19)
+                    pattern = '<i class="far fa-moon-stars"></i>';
+                else if(data.getHours()<9)
+                    pattern = '<i class="fas fa-sunrise"></i>';
+                else if(data.getHours()<16)
+                    pattern = '<i class="fal fa-sun"></i>';
+                else
+                    pattern = '<i class="fas fa-sunset"></i>';
+            }
+            else if(con === "Clouds")
+                pattern = '<i class="far fa-clouds"></i>';
+            else if(con === "Mist")
+                pattern = '<i class="far fa-smog"></i>';
+            else if(con === "Fog")
+                pattern = '<i class="far fa-fog"></i>';
+            else if(con === "Rain")
+                pattern = '<i class="far fa-cloud-showers-heavy"></i>';
+            else if(con === "Rainy")
+                pattern = '<i class="far fa-cloud-showers-heavy"></i>';
+            else if(con === "Smoke")
+                pattern = '<i class="far fa-smoke"></i>';
+            else{
+                if(data.getHours()<6 || data.getHours()>19)
+                    pattern = '<i class="far fa-moon-stars"></i>';
+                else if(data.getHours()<9)
+                    pattern = '<i class="fas fa-sunrise"></i>';
+                else if(data.getHours()<16)
+                    pattern = '<i class="fad fa-sun-cloud"></i>';
+                else
+                    pattern = '<i class="fas fa-sunset"></i>';
+            }
+
+                splace.innerHTML = `${place}`;
+                scoun.innerHTML = `${coun}`;
+                stemp1.innerHTML = (`${temp1}`-273.15).toFixed(2);
+                stemp2.innerHTML = (`${temp2}`-273.15).toFixed(2);
+                spress.innerHTML = (`${press}`/1013.25).toFixed(2);
+                swind.innerHTML = `${wind}`;
+                scon.innerHTML = `${con}`;
+                sdate.innerHTML = `${fullDate}`;
+                simg.innerHTML = `${pattern}`;
+            }
+
+            let ndata="";
+            const getdata = async ()=>{
+                let city="";
+                if(search.value === "")
+                    city = "Delhi";
+                else
+                    city = (search.value).toLowerCase();
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},{if_first_does_not_works}&appid=edc2010e828bb1402e498a42935abe9c`;
+                let data = await fetch(url);
+                ndata = await data.json();
+                console.log(ndata);
+                putdata();
+        }
+        getdata();
+
+        search.addEventListener("keyup", (e)=>{
+            e.preventDefault();
+            if (e.keyCode === 13){
+                clicked.click();
+            }
+        });
+
+        clicked.addEventListener("click", getdata);
+
+    </script>
+</body>
+</html>
