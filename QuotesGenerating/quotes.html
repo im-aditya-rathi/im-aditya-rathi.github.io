@@ -69,8 +69,8 @@
         const btn = document.getElementById("clicked");
         const quote = () => {
             let rand = Math.floor(Math.random() * 20);
-            let data = ${ndata[rand].author};
-            const dataArray = data.split(",").map(item => item.trim());
+            let rawData = ${ndata[rand].author};
+            const dataArray = rawData.split(",").map(item => item.trim());
             text.innerHTML = `<q> ${ndata[rand].text} </q>`;
             (ndata[rand].author == null) ?
                 author.innerHTML = "unknown" :
